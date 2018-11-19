@@ -1191,7 +1191,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1323,6 +1323,36 @@ Prefab:
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114797812631323462, guid: 39174161f9eb4974c9d88108d325ebb8,
+        type: 2}
+      propertyPath: m_text
+      value: Sample Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 114797812631323462, guid: 39174161f9eb4974c9d88108d325ebb8,
+        type: 2}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114797812631323462, guid: 39174161f9eb4974c9d88108d325ebb8,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114797812631323462, guid: 39174161f9eb4974c9d88108d325ebb8,
+        type: 2}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114797812631323462, guid: 39174161f9eb4974c9d88108d325ebb8,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114797812631323462, guid: 39174161f9eb4974c9d88108d325ebb8,
+        type: 2}
+      propertyPath: m_textInfo.lineCount
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39174161f9eb4974c9d88108d325ebb8, type: 2}
@@ -1463,7 +1493,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1853,3 +1883,25 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2111326940}
   m_CullTransparentMesh: 0
+--- !u!1 &2132150785 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1212533784693762, guid: 39174161f9eb4974c9d88108d325ebb8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1620131381}
+--- !u!114 &2132150790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2132150785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9abb316f2876d44a53f80f98e28935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp: 100
+  Speed: 5
+  Armor: 3
+  MagicResist: 1
+  Dmg: 10
+  MagicDmg: 1
