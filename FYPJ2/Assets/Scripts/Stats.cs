@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+public class Stats : MonoBehaviour {
 
-public class EnemyStats : MonoBehaviour {
+    [SerializeField]
+    private Slider HeatlhBar;
 
     [SerializeField]
     private int Hp;
     [SerializeField]
-    private int Speed;
+    private float Speed;
     [SerializeField]
     private int Armor;
     [SerializeField]
@@ -17,19 +20,43 @@ public class EnemyStats : MonoBehaviour {
     [SerializeField]
     private int MagicDmg;
 
+    [SerializeField]
+    private Skills[] skillSet;
+
+    void Start()
+    {
+        HeatlhBar.maxValue = Hp;
+        HeatlhBar.value = Hp;        
+    }
+
+    void Update()
+    {
+        HeatlhBar.value = Hp;
+        if (Hp <= 0)
+            gameObject.SetActive(false);
+    }
+
     public int GetHP() { return Hp; }
-    public int GetSpeed() { return Speed; }
+    public float GetSpeed() { return Speed; }
     public int GetArmor() { return Armor; }
     public int GetMagicResist() { return MagicResist; }
     public int GetDmg() { return Dmg; }
     public int GetMagicDmg() { return MagicDmg; }
+    public Skills[] GetSkills() { return skillSet; }
 
     public void SetHP(int newHP) { Hp = newHP; }
-    public void SetSpeed(int newSpeed) { Speed = newSpeed; }
+    public void SetSpeed(float newSpeed) { Speed = newSpeed; }
     public void SetArmor(int newArmor) { Hp = newArmor; }
     public void SetMagicResist(int newMR) { Hp = newMR; }
     public void SetDmg(int newDmg) { Hp = newDmg; }
     public void SetMagicDmg(int newMDMG) { Hp = newMDMG; }
+}
 
-
+[System.Serializable]
+public struct Skills
+{
+    public string skillName;
+    public Sprite skillIcon;
+    public float skillCost;
+    public string skillDesc;
 }

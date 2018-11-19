@@ -15,14 +15,14 @@ public class EnemyBattle : MonoBehaviour
 
     //Values that should take from the character 
     private float maxActionPoint = 1.0f;
-    private float actionFillRate = 0.1f;
+    //private float actionFillRate = 0.1f;
     private float attack_cost = 0.5f;
     private float skill_cost = 1.0f;
     private bool save_skill;
     private bool decided;
     private int factor;
 
-    private EnemyStats stats;
+    private Stats stats;
 
     void Awake()
     {
@@ -32,15 +32,14 @@ public class EnemyBattle : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-       stats = GetComponent<EnemyStats>();
-       
+       stats = GetComponent<Stats>();     
     }
 
     // Update is called once per frame
     void Update()
     {
         if (actionBar.value < maxActionPoint)
-            actionBar.value += actionFillRate * Time.deltaTime;
+            actionBar.value += stats.GetSpeed() * Time.deltaTime;
 
 
         if(!decided)
@@ -58,7 +57,6 @@ public class EnemyBattle : MonoBehaviour
             UseSkill();
         }
     }
-
 
     void Attack()
     {
@@ -113,4 +111,6 @@ public class EnemyBattle : MonoBehaviour
         //    UseSkill();
         //}
     }
+
+    public void TakeDamage(int damage) { stats.SetHP(stats.GetHP() - damage); }
 }

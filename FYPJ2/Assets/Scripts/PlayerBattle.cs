@@ -19,16 +19,6 @@ public class PlayerBattle : MonoBehaviour {
     //Values that should take from the character 
     private float maxActionPoint = 1.0f;
     private float actionFillRate = 0.2f;
-
-    void Awake()
-    {
-        //actionBar.value = 1.0f;  //maxActionPoint
-    }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -37,28 +27,23 @@ public class PlayerBattle : MonoBehaviour {
         
         if(charSelected)
         {
-            // TO do make selection bar appear
             actionsList.SetActive(true);
-        }   
-        else
+            Time.timeScale = 0.0f;
+        }
+        else if (!charSelected && !TeamManager.Instance.CheckCharSelection())
         {
             actionsList.SetActive(false);
+            Time.timeScale = 1.0f;
         }
 	}
 
-    public void OnCharacterSelect()
-    {
-        //When player selects character for an action, etc
-        if (!charSelected)  
-        {
-            charSelected = true;
-            Time.timeScale = 0.0f;
-        }
-        //When player decides to cancel action selection
-        else
-        {
-            charSelected = false;
-            Time.timeScale = 1.0f;
-        }
+    public void OnCharacterSelect() {
+        if(!TeamManager.Instance.CheckCharSelection())
+        charSelected = !charSelected;
     }
+
+    public void SetCharSelect(bool selection) { charSelected = selection; }
+    public bool GetCharSelect() { return charSelected; }
+
+    public Slider GetActionBar() { return actionBar; }
 }
