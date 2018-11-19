@@ -22,6 +22,8 @@ public class EnemyBattle : MonoBehaviour
     private bool decided;
     private int factor;
 
+    private EnemyStats stats;
+
     void Awake()
     {
         //actionBar.value = 1.0f;  //maxActionPoint
@@ -30,7 +32,8 @@ public class EnemyBattle : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+       stats = GetComponent<EnemyStats>();
+       
     }
 
     // Update is called once per frame
@@ -54,8 +57,6 @@ public class EnemyBattle : MonoBehaviour
         {
             UseSkill();
         }
-
-
     }
 
 
