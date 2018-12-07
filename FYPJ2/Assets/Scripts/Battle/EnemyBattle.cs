@@ -60,11 +60,23 @@ public class EnemyBattle : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log("I am attack");
+        //Debug.Log("I am attack");
 
         if(actionBar.value >= attack_cost)
         {
             actionBar.value -= attack_cost;
+            bool checktarget = true;
+            while (checktarget)
+            {
+                int choice = Random.Range(0, 3);
+                if (TeamManager.Instance.GetTeamIndex(choice) != null && TeamManager.Instance.GetTeamIndex(choice).GetActive())
+                {
+                    TeamManager.Instance.GetTeamIndex(choice).ReduceHP(stats.GetDmg());
+                    checktarget = false;
+                }
+            }
+
+
         }
 
         decided = false;
@@ -72,21 +84,24 @@ public class EnemyBattle : MonoBehaviour
 
     void UseSkill()
     {
-        Debug.Log("I am use of Skill");   
+        //Debug.Log("I am use of Skill");   
 
         if (actionBar.value >= skill_cost)
         {
             actionBar.value -= skill_cost;
+            int choice = Random.Range(0, 3);
+            if (TeamManager.Instance.GetTeamIndex(choice) != null && TeamManager.Instance.GetTeamIndex(choice).GetActive())
+                TeamManager.Instance.GetTeamIndex(choice).ReduceHP(stats.GetDmg() * 5);
         }
         decided = false;
     }
 
     void Decide()
     {
-        Debug.Log("I am deciding");
+        //Debug.Log("I am deciding");
         factor = Random.Range(0, 10);
 
-        Debug.Log("factor is " + factor);
+        //Debug.Log("factor is " + factor);
 
         if (factor >= 7)
         {

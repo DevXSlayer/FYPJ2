@@ -24,8 +24,7 @@ public class ActionChoices : MonoBehaviour {
     private bool ItemsActive = false;
 
     private bool TargetSelection = false;
-    PointerEventData PointerEventData;
-
+    private PointerEventData PointerEventData;
     private PlayerBattle playerBattle;
     private Stats playerStats;
 
@@ -41,7 +40,6 @@ public class ActionChoices : MonoBehaviour {
     {
         playerBattle = GetComponentInParent<PlayerBattle>();
         playerStats= GetComponentInParent<Stats>();
-
     }
 
     void Update()
@@ -64,30 +62,10 @@ public class ActionChoices : MonoBehaviour {
                 //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
                 foreach (RaycastResult result in results)
                 {
-                    if(result.gameObject.tag == "Enemy")
-                    {
-                        Debug.Log(gameObject.transform.parent.name+ " Hit " + result.gameObject.name);
-                        //To do : damage enemy here
-                        EnemyBattle enemyBattle = result.gameObject.GetComponent<EnemyBattle>();
-                        enemyBattle.TakeDamage(playerStats.GetDmg());
-
-                        playerBattle.GetActionBar().value = 0.0f;
-
-                        TargetSelection = false;
-                        AttackList.SetActive(false);
-                        gameObject.SetActive(false);
-                        playerBattle.SetCharSelect(false);
-                    }
-                    else if(result.gameObject.tag == "Character")
-                    {
-                        TargetSelection = false;
-                        gameObject.SetActive(false);
-                        AttackList.SetActive(false);
-                    }
+                    checkClickedTarget(result);
                 }
             }
         }
-
     }
 
     public void Attack()
@@ -127,4 +105,26 @@ public class ActionChoices : MonoBehaviour {
         }
     }
 
+    void checkClickedTarget(RaycastResult result)
+    {
+        if (result.gameObject.tag == "Enemy")
+        {
+            //To do : damage enemy here
+            EnemyBattle enemyBattle = result.gameObject.GetComponent<EnemyBattle>();
+            enemyBattle.TakeDamage(playerStats.GetDmg());
+
+            playerBattle.GetActionBar().value = 0.0f;
+
+            TargetSelection = false;
+            AttackList.SetActive(false);
+            gameObject.SetActive(false);
+            playerBattle.SetCharSelect(false);
+        }
+        else if (result.gameObject.layer == 8)//Character Layer
+        {
+            AttackList.SetActive(false);
+            TargetSelection = false;
+        }
+
+    }
 }

@@ -15,6 +15,7 @@ public class PlayerBattle : MonoBehaviour {
 
     //Variables used by this class itself
     private bool charSelected = false;
+    private bool othersSelected = false;
 
     //Values that should take from the character 
     private float maxActionPoint = 1.0f;
@@ -24,8 +25,8 @@ public class PlayerBattle : MonoBehaviour {
 	void Update () {
         if (actionBar.value < maxActionPoint)
             actionBar.value += actionFillRate * Time.deltaTime;
-        
-        if(charSelected)
+       
+        if(charSelected && TeamManager.Instance.CheckCharSelection())
         {
             actionsList.SetActive(true);
             Time.timeScale = 0.0f;
@@ -38,8 +39,7 @@ public class PlayerBattle : MonoBehaviour {
 	}
 
     public void OnCharacterSelect() {
-        if(!TeamManager.Instance.CheckCharSelection())
-        charSelected = !charSelected;
+            charSelected = !charSelected;
     }
 
     public void SetCharSelect(bool selection) { charSelected = selection; }
