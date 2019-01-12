@@ -38,13 +38,5 @@ public class PlayerMovement : MonoBehaviour
         rigidBody.MovePosition(rigidBody.position + Velocity * Time.fixedDeltaTime);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            Debug.Log("Triggers");
-            BattleHandler.Instance.setBattle(true);
-            Destroy(other.gameObject);
-        }
-    }
+
 }
