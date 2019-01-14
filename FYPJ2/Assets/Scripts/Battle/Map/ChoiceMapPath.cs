@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ChoiceMapPath : MonoBehaviour {
 
@@ -14,15 +16,13 @@ public class ChoiceMapPath : MonoBehaviour {
     {
         for (int PathIndex = 0; PathIndex < Paths.Length; ++PathIndex)
         {
-            Vector2 Dir = Paths[PathIndex].transform.position - transform.position;
-            Debug.Log(Dir);
-            float Angle = Vector2.Angle(Dir.normalized, transform.up);
-            //Instantiate(DirectionArrow, transform.position, Quaternion.Euler(0, 0, Angle), transform);
-            GameObject DirChoices = Instantiate(DirectionArrow,transform.position,Quaternion.Euler(0,0,Angle), transform);
-            //DirChoices.transform.rotation
+            Vector2 Dir =(Paths[PathIndex].transform.position - transform.position).normalized;
+            float Angle = Mathf.Atan2(Paths[PathIndex].transform.position.y - transform.position.y, Paths[PathIndex].transform.position.x - transform.position.x) * 180.0f / Mathf.PI;
+            GameObject DirChoices = Instantiate(DirectionArrow,new Vector3(Mathf.Clamp(Dir.x,-0.5f,0.5f),Mathf.Clamp(Dir.y,-0.5f,0.5f),0),Quaternion.Euler(0,0,Angle), transform);
+            DirChoices.GetComponent<Image>().alphaHitTestMinimumThreshold = 1.0f;
+            DirChoices.GetComponent<Button>().onClick.AddListener(Pressed);
         }
     }
-
 
     private void OnDrawGizmosSelected()
     {
@@ -39,4 +39,8 @@ public class ChoiceMapPath : MonoBehaviour {
         }
     }
 
+    void Pressed()
+    {
+        Debug.Log(EventSystem.current.currentSelectedGameObject.name);
+    }
 }
