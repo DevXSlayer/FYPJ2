@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChoiceMapGenerator : MonoBehaviour {
+public class PlayerMapPoint : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
