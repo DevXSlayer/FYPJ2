@@ -7,10 +7,10 @@ using UnityEngine.EventSystems;
 public class ChoiceMapPath : MonoBehaviour {
 
     [SerializeField]
-    private GameObject[] Paths;
+    private GameObject[] Points;
 
     [SerializeField]
-    private GameObject DirectionArrow;
+    private GameObject MapPathing;
 
     [SerializeField]
     private GameObject Enemy;
@@ -18,86 +18,128 @@ public class ChoiceMapPath : MonoBehaviour {
     [SerializeField]
     private GameObject Item;
 
+    [SerializeField]
+    private float Speed = 0.5f;
+
+    private bool SpawnEnemy;
     private bool PassedPoint = false;
-    private bool CreatedArrows = false;
-    private int PathNumber = 0;
+    private bool AtPoint = false;
+    private bool Interacted = false;
+
     private GameObject PlayerObject;
-    private List<GameObject> SpawnedArrows;
+    private GameObject PrevPath;
+    private List<GameObject> PathList;
+
+    private float StartTime, PathDistance;
 
     private void Start()
     {
-        SpawnedArrows = new List<GameObject>();
         PlayerObject = TeamManager.Instance.gameObject;
+        PathList = new List<GameObject>();
         int SpawnFactor= Random.Range(0, 2);
         switch (SpawnFactor)
         {
             case 0:
                 Instantiate(Enemy,transform.position,Quaternion.Euler(Vector3.zero), transform);
+                SpawnEnemy = true;
                 break;
             case 1:
                 Instantiate(Item, transform.position, Quaternion.Euler(Vector3.zero), transform);
+                SpawnEnemy = false;
                 break;
         }
+
+        SpawnDirArrows();
     }
 
     private void Update()
     {
-        if (CheckPlayerDistance() && !PassedPoint && !CreatedArrows)
-            SpawnDirArrows();
-        else if(!CheckPlayerDistance() && PassedPoint)
-            DeSpawnDirArrows();
+        if (CheckPlayerDistance() && !AtPoint)
+            AtPoint = true;
+        else if (!CheckPlayerDistance())
+            AtPoint = false;
+
+        if(CheckPlayerDistance() && !Interacted)
+        {
+            Interacted = true; 
+            if(SpawnEnemy)
+            {
+                //Do enemy spawn things
+            }
+            else
+            {
+                //Do Item spawn things
+            }
+        }
+
+        if(PassedPoint)
+        {
+            for(int index = 0; index < PathList.Count; ++index)
+            {
+                PathList[index].gameObject.GetComponent<Image>().color = Color.grey;
+            }
+            PassedPoint = false;
+        }
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (Paths != null)
+        if (Points != null)
         {
-            if (Paths.Length > 0)
+            if (Points.Length > 0)
             {
-                for (int PathIndex = 0; PathIndex < Paths.Length; ++PathIndex)
+                for (int PathIndex = 0; PathIndex < Points.Length; ++PathIndex)
                 {
-                    if (Paths[PathIndex] != null)
-                        Gizmos.DrawLine(this.transform.position, Paths[PathIndex].transform.position);
+                    if (Points[PathIndex] != null)
+                        Gizmos.DrawLine(this.transform.position, Points[PathIndex].transform.position);
                 }
             }
         }
     }
 
-    void Pressed(int PathIndex)
+    public void OnPathClick()
     {
-        PlayerObject.transform.position = Paths[PathIndex].transform.position;
-        PassedPoint = true;
-        
+        ChoiceMapPath PrevNode = PrevPath.GetComponent<ChoiceMapPath>();
+        if (PrevNode.AtPoint)
+        {
+            PrevNode.PassedPoint = true;
+            StartTime = Time.time;
+            PathDistance = Vector3.Distance(transform.position, PlayerObject.transform.position);
+            StartCoroutine(PlayerMove());
+        }
+    }
+
+    IEnumerator PlayerMove()
+    {
+        //Distance moved = time * speed;
+        while(!CheckPlayerDistance())
+        {
+            float DistCovered = (Time.time - StartTime) * Speed;
+            float PathFraction = DistCovered / PathDistance;
+            PlayerObject.transform.position = Vector3.Lerp(PlayerObject.transform.position, transform.position, PathFraction);
+            yield return null;
+        }
     }
 
     bool CheckPlayerDistance()
     {
         Vector2 Distance = (transform.position - PlayerObject.transform.position);
-        if (Distance.magnitude < 0.1f)
+        if (Distance.magnitude < 0.001f)
             return true;
         return false;
     }
 
     void SpawnDirArrows()
     {
-        for (int PathIndex = 0; PathIndex < Paths.Length; ++PathIndex)
+        for (int PathIndex = 0; PathIndex < Points.Length; ++PathIndex)
         {
-            Vector2 Dir = (Paths[PathIndex].transform.position - transform.position).normalized;
-            float Angle = Mathf.Atan2(Paths[PathIndex].transform.position.y - transform.position.y, Paths[PathIndex].transform.position.x - transform.position.x) * 180.0f / Mathf.PI;
-            GameObject DirChoices = Instantiate(DirectionArrow, new Vector3(Mathf.Clamp(Dir.x, -0.5f, 0.5f) + transform.position.x, Mathf.Clamp(Dir.y, -0.5f, 0.5f) + transform.position.y, 0), Quaternion.Euler(0, 0, Angle), transform.GetChild(0));
-            DirChoices.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
-            DirChoices.GetComponent<Button>().onClick.AddListener(() => Pressed(PathNumber));
-            ++PathNumber;
-            SpawnedArrows.Add(DirChoices);
-        }
-        CreatedArrows = true;
-    }
-
-    void DeSpawnDirArrows()
-    {
-        for(int index = 0;index < SpawnedArrows.Count; ++index)
-        {
-            Destroy(SpawnedArrows[index].gameObject);
+            Vector3 Dir = (Points[PathIndex].transform.position - transform.position).normalized;
+            float Dist = Vector3.Distance(transform.position, Points[PathIndex].transform.position);
+            float Angle = Mathf.Atan2(Points[PathIndex].transform.position.y - transform.position.y, Points[PathIndex].transform.position.x - transform.position.x) * 180.0f / Mathf.PI;
+            GameObject Path = Instantiate(MapPathing,transform.position, Quaternion.Euler(0, 0, Angle), transform.GetChild(0));
+            Path.GetComponent<RectTransform>().sizeDelta = new Vector2(Dist, 1);
+            PathList.Add(Path);
+            Points[PathIndex].GetComponent<ChoiceMapPath>().PrevPath = transform.gameObject;
         }
     }
 }
