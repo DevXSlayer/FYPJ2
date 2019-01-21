@@ -290,6 +290,7 @@ MonoBehaviour:
   Enemy: {fileID: 1566046317510114, guid: d61417e5844afff45bcd50667b945ae5, type: 2}
   Item: {fileID: 1990242600417458, guid: f3da7b4b951f8fb4d84ef13a1ea245ee, type: 2}
   Speed: 0.5
+  AtPoint: 0
 --- !u!114 &748788485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,6 +381,7 @@ MonoBehaviour:
   Enemy: {fileID: 1566046317510114, guid: d61417e5844afff45bcd50667b945ae5, type: 2}
   Item: {fileID: 1990242600417458, guid: f3da7b4b951f8fb4d84ef13a1ea245ee, type: 2}
   Speed: 0.5
+  AtPoint: 0
 --- !u!114 &888691949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,10 +986,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1123301181946284, guid: a306e0f32d1365b4dbfc1089e0bb162d, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a306e0f32d1365b4dbfc1089e0bb162d, type: 2}
   m_IsPrefabAsset: 0
@@ -1164,6 +1162,7 @@ MonoBehaviour:
   Enemy: {fileID: 1566046317510114, guid: d61417e5844afff45bcd50667b945ae5, type: 2}
   Item: {fileID: 1990242600417458, guid: f3da7b4b951f8fb4d84ef13a1ea245ee, type: 2}
   Speed: 0.5
+  AtPoint: 0
 --- !u!114 &1925200011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1304,6 +1303,7 @@ MonoBehaviour:
   Enemy: {fileID: 1566046317510114, guid: d61417e5844afff45bcd50667b945ae5, type: 2}
   Item: {fileID: 1990242600417458, guid: f3da7b4b951f8fb4d84ef13a1ea245ee, type: 2}
   Speed: 0.5
+  AtPoint: 0
 --- !u!114 &1953243361
 MonoBehaviour:
   m_ObjectHideFlags: 0

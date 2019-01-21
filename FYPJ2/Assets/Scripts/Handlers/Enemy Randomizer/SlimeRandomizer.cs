@@ -20,24 +20,36 @@ public class SlimeRandomizer : MonoBehaviour {
     [SerializeField]
     private int MaxNoEnemies = 3;
 
-    [SerializeField]
+  
     private GameObject BattleCanvas;
 
     [SerializeField]
     private GameObject EnemyPrefab;
 
     SLIMETYPES[] EnemyTypes;
+    private GameObject PlayerObject;
+    private bool Interacted = false;
+
+    private void Start()
+    {
+        BattleCanvas = BattleCanvasInstance.Instance.gameObject;
+    }
 
     private void Update()
     {
-        if (CheckPlayerDistance())
+        PlayerObject = TeamManager.Instance.gameObject;
+        if (CheckPlayerDistance() && !Interacted)
         {
+            Interacted = true;
             SpawnEnemies();
         }
     }
 
     bool CheckPlayerDistance()
     {
+        Vector2 Distance = (transform.position - PlayerObject.transform.position);
+        if (Distance.magnitude < 0.001f)
+            return true;
         return false;
     }
 
@@ -60,8 +72,6 @@ public class SlimeRandomizer : MonoBehaviour {
             GameObject Enemy = GameObject.Instantiate(EnemyPrefab, BattleCanvas.transform.GetChild(InitIndex));
             Enemy.GetComponent<Image>().sprite = SlimeSprites[(int)EnemyTypes[InitIndex]];
             Enemy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = SlimeSprites[(int)EnemyTypes[InitIndex]].name;
-
-
         }
     }
 }

@@ -23,7 +23,7 @@ public class ChoiceMapPath : MonoBehaviour {
 
     private bool SpawnEnemy;
     private bool PassedPoint = false;
-    private bool AtPoint = false;
+    public bool AtPoint = false;
     private bool Interacted = false;
 
     private GameObject PlayerObject;
@@ -49,7 +49,7 @@ public class ChoiceMapPath : MonoBehaviour {
                 break;
         }
 
-        SpawnDirArrows();
+        SpawnPaths();
     }
 
     private void Update()
@@ -99,7 +99,12 @@ public class ChoiceMapPath : MonoBehaviour {
 
     public void OnPathClick()
     {
-        ChoiceMapPath PrevNode = PrevPath.GetComponent<ChoiceMapPath>();
+        ChoiceMapPath PrevNode;
+        if (PrevPath == null || PrevPath.GetComponent<ChoiceMapPath>() == null)
+            return;
+        else
+            PrevNode = PrevPath.GetComponent<ChoiceMapPath>();
+
         if (PrevNode.AtPoint)
         {
             PrevNode.PassedPoint = true;
@@ -129,7 +134,7 @@ public class ChoiceMapPath : MonoBehaviour {
         return false;
     }
 
-    void SpawnDirArrows()
+    void SpawnPaths()
     {
         for (int PathIndex = 0; PathIndex < Points.Length; ++PathIndex)
         {
