@@ -1,50 +1,56 @@
-﻿//using UnityEngine;
-//using System.Collections;
-//using UnityEngine.UI;
+﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+using TMPro;
 
-//namespace CompleteProject
-//{
-//    public class WeaponButton : MonoBehaviour
-//    {
+namespace CompleteProject
+{
+    public class WeaponButton : MonoBehaviour
+    {
 
-//        public int weaponNumber;
+        public int weaponNumber;
 
-//        public Text name;
-//        public Text cost;
-//        public Text description;
+        public PlayerVars player;
 
-//        private AudioSource source;
+        public ShopObject shop;
 
-//        // Use this for initialization
-//        void Start()
-//        {
-//            source = GetComponent<AudioSource>();
-//            SetButton();
-//        }
+        public TextMeshProUGUI name;
+        public TextMeshProUGUI cost;
+        public TextMeshProUGUI description;
 
-//        void SetButton()
-//        {
-//            string costString = playerShooting.weapons[weaponNumber].cost.ToString();
-//            name.text = playerShooting.weapons[weaponNumber].name;
-//            cost.text = "$" + playerShooting.weapons[weaponNumber].cost;
-//            description.text = playerShooting.weapons[weaponNumber].description;
-//        }
+        private AudioSource source;
 
-//        public void OnClick()
-//        {
-//            if (ScoreManager.score >= playerShooting.weapons[weaponNumber].cost)
-//            {
+        // Use this for initialization
+        void Start()
+        {
+            source = GetComponent<AudioSource>();
+            SetButton();
 
-//                ScoreManager.score -= playerShooting.weapons[weaponNumber].cost;
-//                playerShooting.currentWeapon = weaponNumber;
+            //player = player.GetComponent<PlayerVars>();
+        }
 
-//            }
-//            else
-//            {
-//                source.Play();
-//            }
-//        }
+        void SetButton()
+        {
+            string costString = shop.ShopList[weaponNumber].cost.ToString();
+            name.text = shop.ShopList[weaponNumber].name;
+            cost.text = "$" + shop.ShopList[weaponNumber].cost;
+            description.text = shop.ShopList[weaponNumber].description;
+        }
 
-//    }
+        public void OnClick()
+        {
+            if (player.gold >= shop.ShopList[weaponNumber].cost)
+            {
 
-//}
+                player.gold -= shop.ShopList[weaponNumber].cost;
+
+            }
+            else
+            {
+                source.Play();
+            }
+        }
+
+    }
+
+}
