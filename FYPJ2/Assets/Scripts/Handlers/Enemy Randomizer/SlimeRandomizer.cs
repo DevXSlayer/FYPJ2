@@ -42,6 +42,7 @@ public class SlimeRandomizer : MonoBehaviour {
         {
             Interacted = true;
             SpawnEnemies();
+            Debug.Log("Spawn Enemy");
         }
     }
 
@@ -72,6 +73,7 @@ public class SlimeRandomizer : MonoBehaviour {
             GameObject Enemy = GameObject.Instantiate(EnemyPrefab, BattleCanvas.transform.GetChild(InitIndex));
             Enemy.GetComponent<Image>().sprite = SlimeSprites[(int)EnemyTypes[InitIndex]];
             Enemy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = SlimeSprites[(int)EnemyTypes[InitIndex]].name;
+            EnemyTeamManager.Instance.AddEnemy(Enemy, InitIndex);
         }
     }
 }

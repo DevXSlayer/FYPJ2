@@ -15,10 +15,7 @@ public class ActionChoices : MonoBehaviour {
     [SerializeField]
     GameObject AttackList;
 
-    [SerializeField]
-    private GraphicRaycaster Raycaster;
-    [SerializeField]
-    private EventSystem EventSystem;
+
 
     private bool SkillsActive = false;
     private bool ItemsActive = false;
@@ -27,6 +24,8 @@ public class ActionChoices : MonoBehaviour {
     private PointerEventData PointerEventData;
     private PlayerBattle playerBattle;
     private Stats playerStats;
+    private GraphicRaycaster Raycaster;
+    private EventSystem EventSystem;
 
     void Awake()
     {
@@ -40,6 +39,9 @@ public class ActionChoices : MonoBehaviour {
     {
         playerBattle = GetComponentInParent<PlayerBattle>();
         playerStats= GetComponentInParent<Stats>();
+        Debug.Log(gameObject.name + playerStats.GetHP().ToString());
+        Raycaster = BattleCanvasInstance.Instance.RayCaster;
+        EventSystem = BattleCanvasInstance.Instance.EventSystem;
     }
 
     void Update()

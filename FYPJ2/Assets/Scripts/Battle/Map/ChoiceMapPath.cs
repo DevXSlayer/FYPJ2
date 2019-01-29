@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+
 
 public class ChoiceMapPath : MonoBehaviour {
 
@@ -17,6 +18,9 @@ public class ChoiceMapPath : MonoBehaviour {
 
     [SerializeField]
     private GameObject Item;
+
+    [SerializeField]
+    private bool LastNode;
 
     [SerializeField]
     private float Speed = 0.5f;
@@ -79,6 +83,11 @@ public class ChoiceMapPath : MonoBehaviour {
                 PathList[index].gameObject.GetComponent<Image>().color = Color.grey;
             }
             PassedPoint = false;
+        }
+
+        if(LastNode && Interacted && !BattleCanvasInstance.Instance.gameObject.activeSelf)
+        {
+            SceneManager.LoadScene("TownScene");
         }
     }
 

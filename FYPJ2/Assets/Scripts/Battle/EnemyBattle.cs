@@ -69,9 +69,9 @@ public class EnemyBattle : MonoBehaviour
             while (checktarget)
             {
                 int choice = Random.Range(0, 3);
-                if (TeamManager.Instance.GetTeamIndex(choice) != null && TeamManager.Instance.GetTeamIndex(choice).GetActive())
+                if (TeamManager.Instance.GetTeamIndex(choice) != null && TeamManager.Instance.GetTeamIndex(choice).activeSelf)
                 {
-                    TeamManager.Instance.GetTeamIndex(choice).ReduceHP(stats.GetDmg());
+                    TeamManager.Instance.GetTeamIndexStats(choice).ReduceHP(stats.GetDmg());
                     checktarget = false;
                 }
             }
@@ -90,8 +90,8 @@ public class EnemyBattle : MonoBehaviour
         {
             actionBar.value -= skill_cost;
             int choice = Random.Range(0, 3);
-            if (TeamManager.Instance.GetTeamIndex(choice) != null && TeamManager.Instance.GetTeamIndex(choice).GetActive())
-                TeamManager.Instance.GetTeamIndex(choice).ReduceHP(stats.GetDmg() * 5);
+            if (TeamManager.Instance.GetTeamIndex(choice) != null && TeamManager.Instance.GetTeamIndex(choice).gameObject.activeSelf)
+                TeamManager.Instance.GetTeamIndexStats(choice).ReduceHP(stats.GetDmg() * 5);
         }
         decided = false;
     }
