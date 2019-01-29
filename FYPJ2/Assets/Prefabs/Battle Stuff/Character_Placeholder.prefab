@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 114148950569413202}
   - component: {fileID: 114741995741433426}
   m_Layer: 5
-  m_Name: Character_PlaceHolder
+  m_Name: Character_Placeholder
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1158,7 +1158,6 @@ MonoBehaviour:
   SkillsList: {fileID: 1704541445993594}
   ItemsList: {fileID: 1127272283521188}
   AttackList: {fileID: 1871290896377018}
-  Raycaster: {fileID: 0}
   EventSystem: {fileID: 0}
 --- !u!114 &114392180399884990
 MonoBehaviour:

@@ -6,62 +6,33 @@ public class TeamManager : MonoBehaviour {
 
     public static TeamManager Instance;
 
-    private Stats[] PlayerTeam = new Stats[3];
-    private GameObject[] EnemyTeam = new GameObject[3];
-
+    public GameObject[] PlayerTeam = new GameObject[3];
+    private List<GameObject> Characters;
+    private Stats[] PlayerStats = new Stats[3];
     private PlayerBattle[] CharactersSelected = new PlayerBattle[3];
     void Awake()
     {
         Instance = this;
-        //To change : to something more efficient
-        GameObject[] characters = new GameObject[3]; 
-        characters = GameObject.FindGameObjectsWithTag("Character");
-
-        GameObject[] enemies = new GameObject[3];
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        int charCount = 0;
-        for (int index = 0; index < characters.Length; ++index)
-        {
-            PlayerTeam[charCount] = characters[index].GetComponent<Stats>();
-            CharactersSelected[charCount] = characters[index].GetComponent<PlayerBattle>();
-            ++charCount;
-
-        }
-
-        for (int index = 0; index < enemies.Length; ++index)
-        {
-            EnemyTeam[index] = enemies[index];
-        }
-
-
+        Characters = new List<GameObject>();
 
     }
-    
 
-    public Stats GetTeamIndex(int index) { return PlayerTeam[index]; }
-    public Stats[] GetTeam() { return PlayerTeam; }
+    public GameObject GetTeamIndex(int index) { return PlayerTeam[index]; }
+    public Stats GetTeamIndexStats(int index) { return Characters[index].GetComponent<Stats>(); }
+    public GameObject[] GetTeam() { return PlayerTeam; }
 
     public bool CheckCharSelection()
     {
-        for(int i = 0; i < CharactersSelected.Length; ++i)
+        for(int i = 0; i < Characters.Count; ++i)
         {
-            if (CharactersSelected[i] != null &&CharactersSelected[i].GetCharSelect())
+            if (Characters[i] != null && Characters[i].GetComponent<PlayerBattle>().GetCharSelect())
                 return true;
         }
         return false;
     }
 
-    //If any enemies active return true, else return false 
-    public bool CheckEnemiesActive()
+    public void AddCharacter(GameObject character)
     {
-        for (int i = 0; i < EnemyTeam.Length; ++i)
-        {
-            if (EnemyTeam[i] == null)
-                continue;
-            if (EnemyTeam[i].activeSelf)
-                return true;
-        }
-        return false;
+        Characters.Add(character);
     }
 }

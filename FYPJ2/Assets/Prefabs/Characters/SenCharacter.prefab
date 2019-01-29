@@ -1144,8 +1144,6 @@ MonoBehaviour:
   SkillsList: {fileID: 1721359339397878}
   ItemsList: {fileID: 1100845553417668}
   AttackList: {fileID: 1542494166367394}
-  Raycaster: {fileID: 0}
-  EventSystem: {fileID: 0}
 --- !u!114 &114396770154667874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1306,11 +1304,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HeatlhBar: {fileID: 114050560181523448}
-  Hp: 100
+  Hp: 30
   Speed: 0.15
   Armor: 5
   MagicResist: 5
-  Dmg: 10
+  Dmg: 50
   MagicDmg: 10
   skillSet:
   - skillName: Sword

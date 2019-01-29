@@ -48,7 +48,6 @@ public class Stats : MonoBehaviour {
     public int GetDmg() { return Dmg; }
     public int GetMagicDmg() { return MagicDmg; }
     public Skills[] GetSkills() { return skillSet; }
-    public bool GetActive() { return active; }
 
     public void SetHP(int newHP) { Hp = newHP; }
     public void SetSpeed(float newSpeed) { Speed = newSpeed; }
@@ -56,7 +55,6 @@ public class Stats : MonoBehaviour {
     public void SetMagicResist(int newMR) { Hp = newMR; }
     public void SetDmg(int newDmg) { Hp = newDmg; }
     public void SetMagicDmg(int newMDMG) { Hp = newMDMG; }
-    public void SetAcitve(bool newActive) { active = newActive; }
 
     public void ReduceHP(int damage) { Hp -= damage; }
 
