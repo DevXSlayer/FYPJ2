@@ -1,10 +1,12 @@
 fileFormatVersion: 2
-guid: cd0188b297da71e4b981762f60ff818b
+guid: 7f2c29b0309756e4893deca7b3b0e66a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Yaia_0
-    21300002: Yaia_1
-    21300004: Yaia_2
+    21300000: Sen_0
+    21300002: Sen_1
+    21300004: Sen_2
+    21300006: Sen_3
+    21300008: Sen_4
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -23,7 +25,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
@@ -45,7 +47,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -87,13 +89,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Yaia_0
+      name: Sen_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 98
-        height: 153
+        width: 170
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -101,19 +103,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8fb415d31ca1ea47aefeeafde955669
+      spriteID: c69a755d1bc9eb3429f33a260f79a360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yaia_1
+      name: Sen_1
       rect:
         serializedVersion: 2
-        x: 112
+        x: 170
         y: 0
-        width: 76
-        height: 118
+        width: 170
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,19 +123,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a791009e6f6240d429f665f49839c6bf
+      spriteID: 851e15ac1c735e64fb321e531c7394e3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yaia_2
+      name: Sen_2
       rect:
         serializedVersion: 2
-        x: 193
+        x: 340
         y: 0
-        width: 75
-        height: 122
+        width: 170
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,7 +143,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1eb193e3fa4fec44eb5703fec2e16c80
+      spriteID: 1e24b716679fdd2479614cdf434bf9b0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sen_3
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 0
+        width: 170
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c51525300697594285f076337b85027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sen_4
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 0
+        width: 170
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ba10b8b039202c42a0c2c7385d923b1
       vertices: []
       indices: 
       edges: []
@@ -149,7 +191,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 49c5c10155210664c9d2fbdeb6cb25e8
+    spriteID: 2e2dbca31cef555448bef550dc849648
     vertices: []
     indices: 
     edges: []
