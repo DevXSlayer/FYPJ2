@@ -85,7 +85,12 @@ public class ChoiceMapPath : MonoBehaviour {
             PassedPoint = false;
         }
 
-        if(LastNode && Interacted && !BattleCanvasInstance.Instance.gameObject.activeSelf)
+
+    }
+
+    private void LateUpdate()
+    {
+        if (LastNode && Interacted && !BattleCanvasInstance.Instance.gameObject.activeSelf)
         {
             SceneManager.LoadScene("TownScene");
         }

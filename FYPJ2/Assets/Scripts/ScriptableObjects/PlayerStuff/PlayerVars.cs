@@ -9,6 +9,7 @@ public class PlayerVars : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        DontDestroyOnLoad(gameObject);
         gold = 200;
 	}
 	

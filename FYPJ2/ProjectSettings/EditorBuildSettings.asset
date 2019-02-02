@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TownScene.unity
     guid: fb4d4208951b5cc43ab0cd9f65d15860
+  - enabled: 1
+    path: Assets/Scenes/TavernScene.unity
+    guid: 6b23226d2487aeb429d203b96c765f3b
+  - enabled: 1
+    path: Assets/Scenes/BlackSmith Scene.unity
+    guid: 343038bb166e0154a9dbb2cc1fd799d9
   m_configObjects: {}

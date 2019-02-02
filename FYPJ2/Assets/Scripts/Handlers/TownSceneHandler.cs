@@ -5,8 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class TownSceneHandler : MonoBehaviour {
 
-   public void onClick()
+   public void Blacksmith()
     {
         SceneManager.LoadScene("BlackSmith Scene");
+    }
+
+    public void Battle()
+    {
+        SceneManager.LoadScene("ProtoBattleScene");
+    }
+
+    public void Tavern()
+    {
+        SceneManager.LoadScene("TavernScene");
     }
 }
