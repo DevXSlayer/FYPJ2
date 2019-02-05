@@ -19,4 +19,9 @@ public class TownSceneHandler : MonoBehaviour {
     {
         SceneManager.LoadScene("TavernScene");
     }
+
+    public void Town()
+    {
+        SceneManager.LoadScene("TownScene");
+    }
 }
