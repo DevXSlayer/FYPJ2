@@ -6,6 +6,7 @@ public class PlayerVars : MonoBehaviour {
     private static PlayerVars instance;
    public int gold = 200;
 
+
     public static PlayerVars Instance { get { return instance; } }
 
 

@@ -56,4 +56,9 @@ public class TavernButton : MonoBehaviour {
         }
     }
 
+    public void  AddStats()
+    {
+
+    }
+
 }
