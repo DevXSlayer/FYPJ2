@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class MakeCharObj {
-
-    [MenuItem("Assets/Create/Character")]
+public class MakePlayer
+{
+    [MenuItem("Assets/Create/Player")]
     public static void Create()
     {
-        CharacterObj asset = ScriptableObject.CreateInstance<CharacterObj>();
-        AssetDatabase.CreateAsset(asset, "Assets/Scripts/ScriptableObjects/PlayerStuff/NewChar.asset");
+        PlayerScriptable asset = ScriptableObject.CreateInstance<PlayerScriptable>();
+        AssetDatabase.CreateAsset(asset, "Assets/Scripts/ScriptableObjects/PlayerStuff/Player.asset");
         AssetDatabase.SaveAssets();
         EditorUtility.FocusProjectWindow();
         Selection.activeObject = asset;
     }
 }
+

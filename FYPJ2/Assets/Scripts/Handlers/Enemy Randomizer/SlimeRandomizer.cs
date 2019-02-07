@@ -46,7 +46,8 @@ public class SlimeRandomizer : MonoBehaviour {
         }
         else if(Interacted && !EnemyTeamManager.Instance.CheckEnemiesActive() && !Ended)
         {
-            BattleCanvasInstance.Instance.SetRewardItem(0, 0, NoOfEnemies.ToString());
+            BattleCanvasInstance.Instance.SetRewardItem(0, 0, (NoOfEnemies * 5).ToString());
+            PlayerVars.Instance.AddGold(NoOfEnemies * 5);
             Ended = true;
         }
     }

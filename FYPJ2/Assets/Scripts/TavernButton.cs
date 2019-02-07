@@ -8,7 +8,7 @@ public class TavernButton : MonoBehaviour {
 
     public int MemberNumber;
 
-    public PlayerVars player;
+    private PlayerVars player;
 
     public TeamList TavernList;
     public TeamList CurrTeam;
@@ -20,6 +20,7 @@ public class TavernButton : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        player = PlayerVars.Instance;
         source = GetComponent<AudioSource>();
         SetButton();
         if (TavernList.Team[MemberNumber].hired == true)
@@ -37,10 +38,10 @@ public class TavernButton : MonoBehaviour {
 
     public void OnClick()
     {
-        if (player.gold >= TavernList.Team[MemberNumber].cost)
+        if (player.getGold() >= TavernList.Team[MemberNumber].cost)
         {
 
-            player.gold -= TavernList.Team[MemberNumber].cost;
+            player.reduceGold(TavernList.Team[MemberNumber].cost);
 
             //TavernList.Team.Remove(TavernList.Team[MemberNumber]);
             CurrTeam.Team.Add(TavernList.Team[MemberNumber]);
@@ -50,10 +51,10 @@ public class TavernButton : MonoBehaviour {
             gameObject.SetActive(false);
 
         }
-        else
-        {
-            source.Play();
-        }
+        //else
+        //{
+        //    source.Play();
+        //}
     }
 
     public void  AddStats()

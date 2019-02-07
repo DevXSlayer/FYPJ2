@@ -12,7 +12,7 @@ public class CharacterObj : ScriptableObject{
     public int Hp = 0;
     public int Dmg = 0;
     public float Ap_rate = 0;
-    public float armor = 0;
+    public int armor = 0;
 
     public bool hired = false;
     public bool available = false;

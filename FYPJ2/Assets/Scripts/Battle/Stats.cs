@@ -51,12 +51,18 @@ public class Stats : MonoBehaviour {
 
     public void SetHP(int newHP) { Hp = newHP; }
     public void SetSpeed(float newSpeed) { Speed = newSpeed; }
-    public void SetArmor(int newArmor) { Hp = newArmor; }
-    public void SetMagicResist(int newMR) { Hp = newMR; }
-    public void SetDmg(int newDmg) { Hp = newDmg; }
-    public void SetMagicDmg(int newMDMG) { Hp = newMDMG; }
+    public void SetArmor(int newArmor) { Armor = newArmor; }
+    public void SetMagicResist(int newMR) { MagicResist = newMR; }
+    public void SetDmg(int newDmg) { Dmg = newDmg; }
+    public void SetMagicDmg(int newMDMG) { MagicDmg = newMDMG; }
 
-    public void ReduceHP(int damage) { Hp -= damage; }
+    public bool GetActive() { return active; }
+
+    public void ReduceHP(int damage)
+    {
+        if((damage - Armor) > 0)
+        Hp -= (damage-Armor);
+    }
 
 }
 

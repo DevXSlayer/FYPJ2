@@ -39,10 +39,10 @@ namespace CompleteProject
 
         public void OnClick()
         {
-            if (player.gold >= shop.ShopList[weaponNumber].cost)
+            if (player.getGold() >= shop.ShopList[weaponNumber].cost)
             {
 
-                player.gold -= shop.ShopList[weaponNumber].cost;
+                player.reduceGold(shop.ShopList[weaponNumber].cost);
 
             }
             else

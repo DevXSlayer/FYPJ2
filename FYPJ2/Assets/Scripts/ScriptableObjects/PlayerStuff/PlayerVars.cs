@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class PlayerVars : MonoBehaviour {
     private static PlayerVars instance;
-   public int gold = 200;
-
 
     public static PlayerVars Instance { get { return instance; } }
-
+    public PlayerScriptable PlayerScriptable;
 
     // Use this for initialization
     private void Awake()
@@ -20,11 +18,23 @@ public class PlayerVars : MonoBehaviour {
         else
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+    public int getGold()
+    {
+        return PlayerScriptable.gold;
+    }
+
+    public void reduceGold(int amount)
+    {
+        PlayerScriptable.gold -= amount;
+    }
+
+    public void AddGold(int amount)
+    {
+        PlayerScriptable.gold += amount;
+    }
+
 }
