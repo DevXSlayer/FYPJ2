@@ -2411,6 +2411,12 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114244539464188344, guid: dae99dd77b995d44f8161c40104a277c,
+        type: 2}
+      propertyPath: InteractionObject
+      value: 
+      objectReference: {fileID: 1566046317510114, guid: 03496a0f52eccdf4a8fb2366dbaa1671,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dae99dd77b995d44f8161c40104a277c, type: 2}
   m_IsPrefabAsset: 0
@@ -2570,6 +2576,12 @@ Prefab:
       propertyPath: Points.Array.data[1]
       value: 
       objectReference: {fileID: 1654149012}
+    - target: {fileID: 114244539464188344, guid: dae99dd77b995d44f8161c40104a277c,
+        type: 2}
+      propertyPath: InteractionObject
+      value: 
+      objectReference: {fileID: 1566046317510114, guid: 03496a0f52eccdf4a8fb2366dbaa1671,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dae99dd77b995d44f8161c40104a277c, type: 2}
   m_IsPrefabAsset: 0
@@ -3197,6 +3209,12 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114244539464188344, guid: dae99dd77b995d44f8161c40104a277c,
+        type: 2}
+      propertyPath: InteractionObject
+      value: 
+      objectReference: {fileID: 1566046317510114, guid: 03496a0f52eccdf4a8fb2366dbaa1671,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dae99dd77b995d44f8161c40104a277c, type: 2}
   m_IsPrefabAsset: 0

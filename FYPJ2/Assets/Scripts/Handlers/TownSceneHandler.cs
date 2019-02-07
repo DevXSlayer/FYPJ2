@@ -5,7 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class TownSceneHandler : MonoBehaviour {
 
-   public void Blacksmith()
+    private bool DungeonMenuOpen = false;
+    private float MenuClosePosition;
+    private float StartTime;
+    public GameObject DungeonMenu;
+
+    public List<GameObject> TeamList;
+
+    private void Awake()
+    {
+        TeamList = new List<GameObject>();
+    }
+    private void Start()
+    {
+
+        MenuClosePosition = Screen.width/2;
+        if (DungeonMenu != null) 
+        DungeonMenu.SetActive(false);
+    }
+
+    public void Blacksmith()
     {
         SceneManager.LoadScene("BlackSmith Scene");
     }
@@ -23,5 +42,12 @@ public class TownSceneHandler : MonoBehaviour {
     public void Town()
     {
         SceneManager.LoadScene("TownScene");
+    }
+
+
+    public void DungeonMenuOpenClose()
+    {
+        DungeonMenuOpen = !DungeonMenuOpen;
+        DungeonMenu.SetActive(!DungeonMenu.activeSelf);
     }
 }

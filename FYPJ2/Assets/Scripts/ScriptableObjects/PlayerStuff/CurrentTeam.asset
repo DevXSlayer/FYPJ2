@@ -11,4 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9cab4d4e314b824c82c919bb556494a, type: 3}
   m_Name: CurrentTeam
   m_EditorClassIdentifier: 
-  Team: []
+  Team:
+  - {fileID: 11400000, guid: e11a39d60023d7c4cb70d7e906538b93, type: 2}
+  - {fileID: 11400000, guid: 97b9197c7b0a9da4982f3a72cee83cf6, type: 2}
+  - {fileID: 11400000, guid: 97b9197c7b0a9da4982f3a72cee83cf6, type: 2}
+  - {fileID: 11400000, guid: 1ca995fa567430140b7b70e2ce88c954, type: 2}
+  - {fileID: 11400000, guid: 4eba7c6d4bad2e54a8cf4e78b8a2782d, type: 2}

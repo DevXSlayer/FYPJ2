@@ -18,5 +18,5 @@ MonoBehaviour:
   Dmg: 30
   Ap_rate: 2
   armor: 1
-  hired: 0
+  hired: 1
   available: 0

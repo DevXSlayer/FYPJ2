@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.IO;
+using SimpleJSON;
+
 
 public class TavernButton : MonoBehaviour {
 
@@ -46,8 +49,10 @@ public class TavernButton : MonoBehaviour {
             //TavernList.Team.Remove(TavernList.Team[MemberNumber]);
             CurrTeam.Team.Add(TavernList.Team[MemberNumber]);
             TavernList.Team[MemberNumber].hired = true;
+            
+            
 
-            if(TavernList.Team[MemberNumber].hired == true)
+            if (TavernList.Team[MemberNumber].hired == true)
             gameObject.SetActive(false);
 
         }
