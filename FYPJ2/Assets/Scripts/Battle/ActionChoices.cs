@@ -15,8 +15,6 @@ public class ActionChoices : MonoBehaviour {
     [SerializeField]
     GameObject AttackList;
 
-
-
     private bool SkillsActive = false;
     private bool ItemsActive = false;
 
@@ -38,8 +36,7 @@ public class ActionChoices : MonoBehaviour {
     void Start()
     {
         playerBattle = GetComponentInParent<PlayerBattle>();
-        playerStats= GetComponentInParent<Stats>();
-        Debug.Log(gameObject.name + playerStats.GetHP().ToString());
+        playerStats = GetComponentInParent<Stats>();
         Raycaster = BattleCanvasInstance.Instance.RayCaster;
         EventSystem = BattleCanvasInstance.Instance.EventSystem;
     }

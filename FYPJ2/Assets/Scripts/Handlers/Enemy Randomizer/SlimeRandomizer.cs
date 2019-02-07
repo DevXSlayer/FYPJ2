@@ -20,29 +20,34 @@ public class SlimeRandomizer : MonoBehaviour {
     [SerializeField]
     private int MaxNoEnemies = 3;
 
-  
-    private GameObject BattleCanvas;
-
     [SerializeField]
     private GameObject EnemyPrefab;
 
+
     SLIMETYPES[] EnemyTypes;
     private GameObject PlayerObject;
+    private GameObject BattleCanvas;
     private bool Interacted = false;
-
+    private bool Ended = false;
+    private int NoOfEnemies = 0;
     private void Start()
     {
         BattleCanvas = BattleCanvasInstance.Instance.gameObject;
+        PlayerObject = TeamManager.Instance.gameObject;
     }
 
     private void Update()
     {
-        PlayerObject = TeamManager.Instance.gameObject;
         if (CheckPlayerDistance() && !Interacted)
         {
             Interacted = true;
+            BattleCanvasInstance.Instance.CollectedReward = false;
             SpawnEnemies();
-            Debug.Log("Spawn Enemy");
+        }
+        else if(Interacted && !EnemyTeamManager.Instance.CheckEnemiesActive() && !Ended)
+        {
+            BattleCanvasInstance.Instance.SetRewardItem(0, 0, NoOfEnemies.ToString());
+            Ended = true;
         }
     }
 
@@ -59,7 +64,7 @@ public class SlimeRandomizer : MonoBehaviour {
         if (!BattleCanvas.activeSelf)
             BattleCanvas.SetActive(true);
 
-        int NoOfEnemies = Random.Range(1, MaxNoEnemies + 1);
+        NoOfEnemies = Random.Range(1, MaxNoEnemies + 1);
 
         EnemyTypes = new SLIMETYPES[NoOfEnemies];
 
@@ -70,10 +75,11 @@ public class SlimeRandomizer : MonoBehaviour {
 
         for (int InitIndex = 0; InitIndex < EnemyTypes.Length; ++InitIndex)
         {
-            GameObject Enemy = GameObject.Instantiate(EnemyPrefab, BattleCanvas.transform.GetChild(InitIndex));
+            GameObject Enemy = Instantiate(EnemyPrefab, BattleCanvas.transform.GetChild(InitIndex));
             Enemy.GetComponent<Image>().sprite = SlimeSprites[(int)EnemyTypes[InitIndex]];
             Enemy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = SlimeSprites[(int)EnemyTypes[InitIndex]].name;
             EnemyTeamManager.Instance.AddEnemy(Enemy, InitIndex);
         }
     }
+
 }

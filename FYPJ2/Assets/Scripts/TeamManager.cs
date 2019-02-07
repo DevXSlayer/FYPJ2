@@ -1,38 +1,81 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TeamManager : MonoBehaviour {
 
     public static TeamManager Instance;
+    public GameObject GameOverMenu;
+    public GameObject[] FaryssTeamManager = new GameObject[3];
 
-    public GameObject[] PlayerTeam = new GameObject[3];
-    private List<GameObject> Characters;
-    private Stats[] PlayerStats = new Stats[3];
-    private PlayerBattle[] CharactersSelected = new PlayerBattle[3];
+    private GameObject[] PlayerTeam = new GameObject[3];
+    private Stats[] CharacterStats = new Stats[3];
+    private PlayerBattle[] CharacterBattles = new PlayerBattle[3];
+
     void Awake()
     {
         Instance = this;
-        Characters = new List<GameObject>();
+    }
+
+    private void Start()
+    {
+        int playerAnchor = 3; //first anchor index
+        for(int index = 0;index < FaryssTeamManager.Length; ++index)
+        {
+            GameObject Character = Instantiate(FaryssTeamManager[index], BattleCanvasInstance.Instance.transform.GetChild(playerAnchor));
+            PlayerTeam[index] = Character;
+            CharacterStats[index] = PlayerTeam[index].GetComponent<Stats>();
+            CharacterBattles[index] = PlayerTeam[index].GetComponent<PlayerBattle>();
+            ++playerAnchor;
+        }
+    }
+
+    private void Update()
+    {
+        if (CheckCharSelection())
+            Time.timeScale = 0.0f;
+        else
+            Time.timeScale = 1.0f;
+
+        if (!CheckCharacterActive())
+            GameOverMenu.SetActive(true);
 
     }
 
-    public GameObject GetTeamIndex(int index) { return PlayerTeam[index]; }
-    public Stats GetTeamIndexStats(int index) { return Characters[index].GetComponent<Stats>(); }
-    public GameObject[] GetTeam() { return PlayerTeam; }
+    //Return character gameobject at index
+    public GameObject GetCharacter(int index) { return PlayerTeam[index]; }
 
-    public bool CheckCharSelection()
+    //Get character stats at index
+    public Stats GetCharacterStats(int index) { return CharacterStats[index]; }
+
+    //Get character playerbattle at index
+    public PlayerBattle GetCharacterBattle(int index) { return CharacterBattles[index]; }
+
+    private bool CheckCharSelection()
     {
-        for(int i = 0; i < Characters.Count; ++i)
+        for(int i = 0; i < CharacterBattles.Length; ++i)
         {
-            if (Characters[i] != null && Characters[i].GetComponent<PlayerBattle>().GetCharSelect())
+            if (PlayerTeam[i] != null && CharacterBattles[i].GetCharSelect())
                 return true;
         }
         return false;
     }
 
-    public void AddCharacter(GameObject character)
+    private bool CheckCharacterActive()
     {
-        Characters.Add(character);
+        for(int index = 0; index < 3; ++index)
+        {
+            if (GetCharacter(index) != null && GetCharacter(index).activeSelf)
+                return true;
+            else
+                return false;
+        }
+        return false;
+    }
+
+    public void ReturnToTown()
+    {
+        SceneManager.LoadScene("TownScene");
     }
 }
