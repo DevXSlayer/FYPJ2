@@ -15,6 +15,5 @@ public class ButtonAlphaHitTest : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         gameObject.GetComponent<Image>().alphaHitTestMinimumThreshold = AlphaThreshHold;
-
     }
 }

@@ -12,11 +12,6 @@ public class EnemyTeamManager : MonoBehaviour {
         Instance = this;
     }
 
-    private void Update()
-    {
-        if (!CheckEnemiesActive())
-            BattleCanvasInstance.Instance.gameObject.SetActive(false);
-    }
     //If any enemies active return true, else return false 
     public bool CheckEnemiesActive()
     {
@@ -27,13 +22,11 @@ public class EnemyTeamManager : MonoBehaviour {
             if (EnemyTeam[i].activeSelf)
                 return true;
         }
-        BattleCanvasInstance.Instance.gameObject.SetActive(false);
         return false;
     }
 
     public void AddEnemy(GameObject Enemy,int index)
     {
         EnemyTeam[index] = Enemy;
-    }
-
+    }    
 }

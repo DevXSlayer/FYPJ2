@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
+
 public class ChoiceMapPath : MonoBehaviour {
 
     [SerializeField]
@@ -14,10 +15,7 @@ public class ChoiceMapPath : MonoBehaviour {
     private GameObject MapPathing;
 
     [SerializeField]
-    private GameObject Enemy;
-
-    [SerializeField]
-    private GameObject Item;
+    private GameObject InteractionObject;
 
     [SerializeField]
     private bool LastNode;
@@ -25,12 +23,17 @@ public class ChoiceMapPath : MonoBehaviour {
     [SerializeField]
     private float Speed = 0.5f;
 
-    private bool SpawnEnemy;
-    private bool PassedPoint = false;
+    public GameObject ReturnToTownMenu;
+    public bool FirstNode = false;
     public bool AtPoint = false;
+
+    public bool HasInteraction = true;
+    private bool PassedPoint = false;
     private bool Interacted = false;
 
+
     private GameObject PlayerObject;
+    
     private GameObject PrevPath;
     private List<GameObject> PathList;
 
@@ -38,45 +41,24 @@ public class ChoiceMapPath : MonoBehaviour {
 
     private void Start()
     {
-        PlayerObject = TeamManager.Instance.gameObject;
         PathList = new List<GameObject>();
-        int SpawnFactor= Random.Range(0, 2);
-        switch (SpawnFactor)
-        {
-            case 0:
-                Instantiate(Enemy,transform.position,Quaternion.Euler(Vector3.zero), transform);
-                SpawnEnemy = true;
-                break;
-            case 1:
-                Instantiate(Item, transform.position, Quaternion.Euler(Vector3.zero), transform);
-                SpawnEnemy = false;
-                break;
-        }
-
         SpawnPaths();
+        PlayerObject = TeamManager.Instance.gameObject;
+
+        if (FirstNode)
+            PlayerObject.transform.position = gameObject.transform.position;
+        if (HasInteraction)
+            Instantiate(InteractionObject, transform.position,Quaternion.Euler(Vector3.zero), transform);
     }
 
     private void Update()
     {
         if (CheckPlayerDistance() && !AtPoint)
             AtPoint = true;
-        else if (!CheckPlayerDistance())
-            AtPoint = false;
 
-        if(CheckPlayerDistance() && !Interacted)
-        {
-            Interacted = true; 
-            if(SpawnEnemy)
-            {
-                //Do enemy spawn things
-            }
-            else
-            {
-                //Do Item spawn things
-            }
-        }
 
-        if(PassedPoint)
+       
+        if (PassedPoint)
         {
             for(int index = 0; index < PathList.Count; ++index)
             {
@@ -84,16 +66,12 @@ public class ChoiceMapPath : MonoBehaviour {
             }
             PassedPoint = false;
         }
-
-
     }
 
     private void LateUpdate()
     {
-        if (LastNode && Interacted && !BattleCanvasInstance.Instance.gameObject.activeSelf)
-        {
-            SceneManager.LoadScene("TownScene");
-        }
+        if (BattleCanvasInstance.Instance.CollectedReward && LastNode && AtPoint)
+            ReturnToTownMenu.SetActive(true);
     }
 
     private void OnDrawGizmosSelected()
@@ -161,4 +139,10 @@ public class ChoiceMapPath : MonoBehaviour {
             Points[PathIndex].GetComponent<ChoiceMapPath>().PrevPath = transform.gameObject;
         }
     }
+
+    public void ReturnToTown()
+    {
+        SceneManager.LoadScene("TownScene");
+    }
 }
+
