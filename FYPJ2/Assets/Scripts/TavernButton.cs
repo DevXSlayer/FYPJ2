@@ -45,7 +45,7 @@ public class TavernButton : MonoBehaviour {
         {
 
             player.reduceGold(TavernList.Team[MemberNumber].cost);
-
+            PlayerCheatScript.Instance.CheatList.Add(TavernList.Team[MemberNumber]);
             //TavernList.Team.Remove(TavernList.Team[MemberNumber]);
             CurrTeam.Team.Add(TavernList.Team[MemberNumber]);
             TavernList.Team[MemberNumber].hired = true;

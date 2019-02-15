@@ -21,19 +21,41 @@ public class TeamManager : MonoBehaviour {
 
     private void Start()
     {
+        //int playerAnchor = 3; //first anchor index
+        //for (int i = 0; i < FaryssTeamManager.Team.Count; ++i)
+        //{
+        //    if (i >= 3)
+        //        break;
+        //    for (int x = 0; x < CharacterList.Length; ++x)
+        //    {
+        //        if (FaryssTeamManager.Team[i].name == CharacterList[x].name)
+        //        {
+        //            GameObject Character = Instantiate(CharacterList[x], BattleCanvasInstance.Instance.transform.GetChild(playerAnchor));
+        //            Character.GetComponent<Stats>().SetHP(FaryssTeamManager.Team[i].Hp);
+        //            Character.GetComponent<Stats>().SetDmg(FaryssTeamManager.Team[i].Dmg);
+        //            Character.GetComponent<Stats>().SetArmor(FaryssTeamManager.Team[i].armor);
+
+        //            PlayerTeam[i] = Character;
+        //            CharacterStats[i] = PlayerTeam[i].GetComponent<Stats>();
+        //            CharacterBattles[i] = PlayerTeam[i].GetComponent<PlayerBattle>();
+        //            ++playerAnchor;
+        //            break;
+        //        }
+        //    }
+        //}
         int playerAnchor = 3; //first anchor index
-        for (int i = 0; i < FaryssTeamManager.Team.Count; ++i)
+        for (int i = 0; i < PlayerCheatScript.Instance.CheatList.Count; ++i)
         {
             if (i >= 3)
                 break;
             for (int x = 0; x < CharacterList.Length; ++x)
             {
-                if (FaryssTeamManager.Team[i].name == CharacterList[x].name)
+                if (PlayerCheatScript.Instance.CheatList[i].name == CharacterList[x].name)
                 {
                     GameObject Character = Instantiate(CharacterList[x], BattleCanvasInstance.Instance.transform.GetChild(playerAnchor));
-                    Character.GetComponent<Stats>().SetHP(FaryssTeamManager.Team[i].Hp);
-                    Character.GetComponent<Stats>().SetDmg(FaryssTeamManager.Team[i].Dmg);
-                    Character.GetComponent<Stats>().SetArmor(FaryssTeamManager.Team[i].armor);
+                    Character.GetComponent<Stats>().SetHP(PlayerCheatScript.Instance.CheatList[i].Hp);
+                    Character.GetComponent<Stats>().SetDmg(PlayerCheatScript.Instance.CheatList[i].Dmg);
+                    Character.GetComponent<Stats>().SetArmor(PlayerCheatScript.Instance.CheatList[i].armor);
 
                     PlayerTeam[i] = Character;
                     CharacterStats[i] = PlayerTeam[i].GetComponent<Stats>();
@@ -44,7 +66,7 @@ public class TeamManager : MonoBehaviour {
             }
         }
 
-        
+
     }
 
     private void Update()
