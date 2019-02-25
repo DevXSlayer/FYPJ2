@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9692d586b6298f4469823271d96c53f0, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  gold: 255
+  gold: 250

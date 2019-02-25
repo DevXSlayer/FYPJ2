@@ -24,7 +24,7 @@ namespace CompleteProject
         void Start()
         {
             source = GetComponent<AudioSource>();
-            SetButton();
+            //SetButton();
 
             //player = player.GetComponent<PlayerVars>();
         }

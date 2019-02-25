@@ -2,69 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 using System.IO;
 using SimpleJSON;
 
 
 public class TavernButton : MonoBehaviour {
 
-    public int MemberNumber;
+    public TextMeshProUGUI name;
+    public TextMeshProUGUI costText;
+
+    public int Cost;
 
     private PlayerVars player;
-
-    public TeamList TavernList;
-    public TeamList CurrTeam;
-
-    public TextMeshProUGUI name;
-    public TextMeshProUGUI cost;
-
     private AudioSource source;
+    private string CharListPath,PlayerTeamPath;
+    private string CharListText, PlayerTeamText;
+    private JSONObject CharHireList, PlayerTeamList;
     // Use this for initialization
     void Start()
     {
         player = PlayerVars.Instance;
         source = GetComponent<AudioSource>();
-        SetButton();
-        if (TavernList.Team[MemberNumber].hired == true)
-            gameObject.SetActive(false);
-        //player = player.GetComponent<PlayerVars>();
-    }
+        CharListPath = Application.streamingAssetsPath + "/CharHireList.json";
+        PlayerTeamPath = Application.streamingAssetsPath + "/PlayerTeamList.json";
+        if (File.Exists(CharListPath))
+        {
+            CharListText = File.ReadAllText(CharListPath);
+            CharHireList = JSON.Parse(CharListText) as JSONObject;
+        }
+        if (File.Exists(PlayerTeamPath))
+        {
+            PlayerTeamText = File.ReadAllText(PlayerTeamPath);
+            PlayerTeamList = JSON.Parse(PlayerTeamText) as JSONObject;
+        }
 
-    void SetButton()
-    {
-        string costString = TavernList.Team[MemberNumber].cost.ToString();
-        name.text = TavernList.Team[MemberNumber].name;
-        cost.text = "$" + TavernList.Team[MemberNumber].cost;
-        gameObject.GetComponent<Image>().sprite = TavernList.Team[MemberNumber].CharSprite;
     }
 
     public void OnClick()
     {
-        if (player.getGold() >= TavernList.Team[MemberNumber].cost)
+
+        if (player.getGold() >= Cost )
         {
-
-            player.reduceGold(TavernList.Team[MemberNumber].cost);
-            PlayerCheatScript.Instance.CheatList.Add(TavernList.Team[MemberNumber]);
-            //TavernList.Team.Remove(TavernList.Team[MemberNumber]);
-            CurrTeam.Team.Add(TavernList.Team[MemberNumber]);
-            TavernList.Team[MemberNumber].hired = true;
-            
-            
-
-            if (TavernList.Team[MemberNumber].hired == true)
+            player.reduceGold(Cost);
+            CharHireList[name.text].AsArray[1].Value = "true";
+            File.WriteAllText(CharListPath, CharHireList.ToString());            
             gameObject.SetActive(false);
-
         }
         //else
         //{
         //    source.Play();
         //}
     }
-
-    public void  AddStats()
-    {
-
-    }
-
 }

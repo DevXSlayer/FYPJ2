@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using SimpleJSON;
+using System.IO;
 
 public class AudioSettingsManager : MonoBehaviour {
 
@@ -15,13 +17,28 @@ public class AudioSettingsManager : MonoBehaviour {
     public GameObject SettingsMenu;
     public GameObject SettingsButton;
 	// Use this for initialization
-	void Awake () {
+	void Start () {
         Instance = this;
         DontDestroyOnLoad(this);
+
         TownButton.SetActive(false);
         ConfirmationMenu.SetActive(false);
         SettingsMenu.SetActive(false);
 
+        string DataPath = Application.streamingAssetsPath + "/AudioSettings.json";
+        string AudioString = null;
+        if (File.Exists(DataPath))
+        {
+            AudioString = File.ReadAllText(DataPath);
+            JSONObject AudioJson = JSON.Parse(AudioString) as JSONObject;
+
+            BGMSlider.value = AudioJson["BGM"];
+            SFXSlider.value = AudioJson["SFX"];
+
+            BgmAudioManager.Instance.IncreaseAudio(AudioJson["BGM"]);
+            SFXAudioManager.Instance.IncreaseAudio(AudioJson["SFX"]);
+
+        }
     }
 	
 	// Update is called once per frame
@@ -40,11 +57,18 @@ public class AudioSettingsManager : MonoBehaviour {
         if (SceneManager.GetActiveScene().buildIndex >= 4)
             TownButton.SetActive(true);
         else
-            TownButton.SetActive(false);
-
-
-            
+            TownButton.SetActive(false);      
 	}
+
+    private void OnApplicationQuit()
+    {
+        JSONObject AudioJson = new JSONObject();
+        AudioJson.Add("SFX", SFXSlider.value);
+        AudioJson.Add("BGM", BGMSlider.value);
+
+        string SavePath = Application.streamingAssetsPath + "/AudioSettings.json";
+        File.WriteAllText(SavePath,AudioJson.ToString());
+    }
 
     public void SettingsMenuButton()
     {

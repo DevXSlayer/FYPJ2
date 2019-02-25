@@ -21,14 +21,10 @@ public class BgmAudioManager : MonoBehaviour {
 
     private void Update()
     {
-
         if (SceneManager.GetActiveScene().buildIndex < 4)
             PlayAudio(TownBGM);
         else if (SceneManager.GetActiveScene().buildIndex >= 4)
-            PlayAudio(BattleBGM);
-        
-
-                
+            PlayAudio(BattleBGM);               
     }
 
     public void PlayAudio(AudioClip bgm)

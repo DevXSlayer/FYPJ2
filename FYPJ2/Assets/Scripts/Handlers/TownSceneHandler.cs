@@ -8,6 +8,9 @@ public class TownSceneHandler : MonoBehaviour {
     private bool DungeonMenuOpen = false;
     private float MenuClosePosition;
     private float StartTime;
+    private string SceneToChange;
+
+    public GameObject TeamSelectionMenu;
     public GameObject DungeonMenu;
 
     public List<GameObject> TeamList;
@@ -20,8 +23,10 @@ public class TownSceneHandler : MonoBehaviour {
     {
 
         MenuClosePosition = Screen.width/2;
-        if (DungeonMenu != null) 
+        if(DungeonMenu != null)
         DungeonMenu.SetActive(false);
+        if(TeamSelectionMenu !=null)
+        TeamSelectionMenu.SetActive(false);
     }
 
     public void Blacksmith()
@@ -29,9 +34,22 @@ public class TownSceneHandler : MonoBehaviour {
         SceneManager.LoadScene("BlackSmith Scene");
     }
 
-    public void Battle()
+    public void StartBattle()
     {
-        SceneManager.LoadScene("ProtoBattleScene");
+        SelectedTeam.Instance.StartBattle();
+        TeamSelectionMenu.SetActive(false);
+        SceneManager.LoadScene(SceneToChange);
+    }
+    public void SelectDungeon(string SceneName)
+    {
+        SceneToChange = SceneName;
+        DungeonMenu.SetActive(false);
+        TeamSelectionMenu.SetActive(true);
+    }
+    public void TeamSelectBack()
+    {
+        DungeonMenu.SetActive(true);
+        TeamSelectionMenu.SetActive(false);
     }
 
     public void Tavern()
@@ -43,7 +61,6 @@ public class TownSceneHandler : MonoBehaviour {
     {
         SceneManager.LoadScene("TownScene");
     }
-
 
     public void DungeonMenuOpenClose()
     {

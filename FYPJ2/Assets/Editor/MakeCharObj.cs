@@ -9,7 +9,7 @@ public class MakeCharObj {
     public static void Create()
     {
         CharacterObj asset = ScriptableObject.CreateInstance<CharacterObj>();
-        AssetDatabase.CreateAsset(asset, "Assets/Scripts/ScriptableObjects/PlayerStuff/NewChar.asset");
+        AssetDatabase.CreateAsset(asset, "Assets/Resources/Characters/NewChar.asset");
         AssetDatabase.SaveAssets();
         EditorUtility.FocusProjectWindow();
         Selection.activeObject = asset;
