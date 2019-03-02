@@ -5,15 +5,9 @@ using SimpleJSON;
 using System.IO;
 public class SelectedTeam : MonoBehaviour {
 
-    public static SelectedTeam Instance;
     private GameObject[] Team = new GameObject[3];
 
     private int TeamCharCount = 0;
-
-    // Use this for initialization
-    void Awake () {
-        Instance = this;
-	}
 
     public bool SetCharacter(GameObject Character)
     {
@@ -87,5 +81,4 @@ public class SelectedTeam : MonoBehaviour {
         }
         File.WriteAllText(SavePath, PlayerTeam.ToString());
     }
-
 }

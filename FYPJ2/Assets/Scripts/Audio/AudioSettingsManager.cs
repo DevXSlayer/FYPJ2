@@ -16,7 +16,7 @@ public class AudioSettingsManager : MonoBehaviour {
     public GameObject ConfirmationMenu;
     public GameObject SettingsMenu;
     public GameObject SettingsButton;
-	// Use this for initialization
+
 	void Start () {
         Instance = this;
         DontDestroyOnLoad(this);
@@ -41,7 +41,6 @@ public class AudioSettingsManager : MonoBehaviour {
         }
     }
 	
-	// Update is called once per frame
 	void Update () {
         if (SceneManager.GetActiveScene().buildIndex >= 3)
             SettingsButton.SetActive(true);

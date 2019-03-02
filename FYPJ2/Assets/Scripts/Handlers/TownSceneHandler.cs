@@ -3,35 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//More for handling UI that appears in town scene
 public class TownSceneHandler : MonoBehaviour {
 
     private bool DungeonMenuOpen = false;
-    private float MenuClosePosition;
-    private float StartTime;
     private string SceneToChange;
 
     public GameObject TeamSelectionMenu;
     public GameObject DungeonMenu;
+    public SelectedTeam SelectedTeamList;
 
-    public List<GameObject> TeamList;
 
-    private void Awake()
-    {
-        TeamList = new List<GameObject>();
-    }
     private void Start()
     {
-
-        MenuClosePosition = Screen.width/2;
         if(DungeonMenu != null)
         DungeonMenu.SetActive(false);
         if(TeamSelectionMenu !=null)
         TeamSelectionMenu.SetActive(false);
-    }
-
-    public void Blacksmith()
-    {
-        SceneManager.LoadScene("BlackSmith Scene");
     }
 
     public void StartBattle()
@@ -40,6 +28,7 @@ public class TownSceneHandler : MonoBehaviour {
         TeamSelectionMenu.SetActive(false);
         SceneManager.LoadScene(SceneToChange);
     }
+
     public void SelectDungeon(string SceneName)
     {
         SceneToChange = SceneName;
@@ -50,16 +39,6 @@ public class TownSceneHandler : MonoBehaviour {
     {
         DungeonMenu.SetActive(true);
         TeamSelectionMenu.SetActive(false);
-    }
-
-    public void Tavern()
-    {
-        SceneManager.LoadScene("TavernScene");
-    }
-
-    public void Town()
-    {
-        SceneManager.LoadScene("TownScene");
     }
 
     public void DungeonMenuOpenClose()

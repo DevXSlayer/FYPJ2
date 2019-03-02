@@ -23,7 +23,7 @@ public class Stats : MonoBehaviour {
     [SerializeField]
     private Skills[] skillSet;
 
-    private bool active = true;
+    public bool active = true;
 
     void Start()
     {
