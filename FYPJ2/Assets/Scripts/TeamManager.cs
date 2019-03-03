@@ -27,11 +27,11 @@ public class TeamManager : MonoBehaviour {
         {
             string SelectedTeamString = File.ReadAllText(SelectedTeamPath);
             JSONObject SelectedTeam = JSON.Parse(SelectedTeamString) as JSONObject;
-            for (int index = 0; index < SelectedTeam.Count; ++index)
+            for (int index = 0; index < SelectedTeam["SelectedTeam"].Count; ++index)
             {
                 for(int i = 0; i < CharacterList.Length; ++i)
                 {
-                    if (CharacterList[i].name != SelectedTeam[index].Value)
+                    if (CharacterList[i].name != SelectedTeam["SelectedTeam"].AsArray[index])
                         continue;
                     GameObject Character = Instantiate(CharacterList[i], BattleCanvasInstance.Instance.transform.GetChild(index + 3));
                     CharacterBattles[index] = Character.GetComponent<PlayerBattle>();

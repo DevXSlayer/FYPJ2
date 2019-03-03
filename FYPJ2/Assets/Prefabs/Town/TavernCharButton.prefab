@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114616149506694288}
   - component: {fileID: 114675601107219456}
   m_Layer: 5
-  m_Name: CharTavernButton
+  m_Name: TavernCharButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

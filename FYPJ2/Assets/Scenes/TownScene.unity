@@ -348,6 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharButton: {fileID: 1453597650033626, guid: 440de1610aa3bf648b340dacbc39b58d, type: 2}
+  SelectedTeamHolder: {fileID: 1671348363}
   CharSprite:
   - {fileID: 21300000, guid: 9a50084d8ce60624794c8cd205404f7d, type: 3}
   - {fileID: 21300000, guid: 561c636d97c966b4c8cc7379e3846a9f, type: 3}
@@ -3926,7 +3927,6 @@ GameObject:
   - component: {fileID: 1671348364}
   - component: {fileID: 1671348366}
   - component: {fileID: 1671348365}
-  - component: {fileID: 1671348367}
   - component: {fileID: 1671348368}
   m_Layer: 0
   m_Name: SelectedTeam
@@ -3987,17 +3987,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1671348363}
   m_CullTransparentMesh: 0
---- !u!114 &1671348367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1671348363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f74a2782d8538334791995cf41e8fda5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1671348368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4958,7 +4947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TeamSelectionMenu: {fileID: 1415884143}
   DungeonMenu: {fileID: 889802833}
-  TeamList: []
+  TeamChar: {fileID: 153668276}
 --- !u!1 &2136965396
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,18 +5,20 @@ using UnityEngine;
 public class TeamCharButton : MonoBehaviour {
     private bool CharSelected = false, InTeam = false;
     private Transform OriginalTranform; //Tranform of the scrollview
+    public TeamCharSelect CharSelect; //Accessing SetChar and RemoveChar functions
 
     private void Start()
     {
         if (!InTeam)
-            OriginalTranform = transform;
+            OriginalTranform = transform.parent;
+        Debug.Log(CharSelected);
     }
 
     public void SelectChar()
     {
         if (!CharSelected)
         {
-            if(SelectedTeam.Instance.SetCharacter(gameObject))           
+            if(CharSelect.SetCharacter(gameObject))          
                 CharSelected = true;
         }
         else
@@ -25,7 +27,7 @@ public class TeamCharButton : MonoBehaviour {
             {
                 CharSelected = false;
                 gameObject.transform.SetParent(OriginalTranform);
-                SelectedTeam.Instance.RemoveCharacter(gameObject);
+                CharSelect.RemoveCharacter(gameObject);
             }
         }
     }

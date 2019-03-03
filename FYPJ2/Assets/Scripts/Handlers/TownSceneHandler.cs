@@ -11,8 +11,7 @@ public class TownSceneHandler : MonoBehaviour {
 
     public GameObject TeamSelectionMenu;
     public GameObject DungeonMenu;
-    public SelectedTeam SelectedTeamList;
-
+    public TeamCharSelect TeamChar;
 
     private void Start()
     {
@@ -24,7 +23,7 @@ public class TownSceneHandler : MonoBehaviour {
 
     public void StartBattle()
     {
-        SelectedTeam.Instance.StartBattle();
+        TeamChar.StartBattle();
         TeamSelectionMenu.SetActive(false);
         SceneManager.LoadScene(SceneToChange);
     }

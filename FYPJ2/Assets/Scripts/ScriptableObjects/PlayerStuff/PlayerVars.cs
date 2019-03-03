@@ -26,6 +26,7 @@ public class PlayerVars : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
         //Get Player previously selected team
         string PlayerTeamPath = Application.streamingAssetsPath + "/PlayerTeam.json";
         if (File.Exists(PlayerTeamPath))

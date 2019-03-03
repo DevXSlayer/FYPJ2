@@ -8,15 +8,22 @@ using UnityEngine.UI;
 //Used to create the character buttons before entering battle
 public class TeamCharSelect : MonoBehaviour {
     public GameObject CharButton;
+    public GameObject SelectedTeamHolder;
     public Sprite[] CharSprite;
+    private string[] Team = new string[3];
+    private int TeamCharCount = 0;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
         string CharListPath = Application.streamingAssetsPath + "/CharHireList.json";
         string PlayerTeamPath = Application.streamingAssetsPath + "/PlayerTeam.json";
         string CharListString = null;
         string PlayerTeamString = null;
 
+        Team[0] = "";
+        Team[1] = "";
+        Team[2] = "";
         if (File.Exists(CharListPath) && CharSprite.Length > 0 && File.Exists(PlayerTeamPath))
         {
             CharListString = File.ReadAllText(CharListPath);
@@ -29,17 +36,22 @@ public class TeamCharSelect : MonoBehaviour {
                 if (CharHireList[i].AsArray[1])
                 {
                     GameObject Character = Instantiate(CharButton, transform);
-                    if(PlayerTeam.Count > 0)
+                    Character.GetComponent<TeamCharButton>().CharSelect = this;
+
+                    for (int TeamIndex = 0; TeamIndex < PlayerTeam.Count; ++TeamIndex)
                     {
-                        for (int TeamIndex = 0; TeamIndex < PlayerTeam.Count; ++TeamIndex)
+                        if(PlayerTeam["SelectedTeam"].AsArray[TeamIndex] != "")
                         {
-                            if (PlayerTeam[TeamIndex.ToString()].Value == CharHireList[i].AsArray[0].Value)
+                            if (PlayerTeam["SelectedTeam"].AsArray[TeamIndex] == CharHireList[i].AsArray[0].Value)
                             {
-                                Character.transform.SetParent(SelectedTeam.Instance.transform);
+                                Character.transform.SetParent(SelectedTeamHolder.transform);
                                 Character.GetComponent<TeamCharButton>().SetInTeam(transform);
                             }
                         }
+
                     }
+
+                    //For setting sprite
                     for (int count = 0; count < CharSprite.Length; ++count)
                     {
                         if (CharSprite[count].name != CharHireList[i].AsArray[0].Value)
@@ -50,11 +62,83 @@ public class TeamCharSelect : MonoBehaviour {
                             Character.name = CharSprite[count].name;
                         }
                     }
-                    Character.GetComponent<TeamCharButton>().SetInTeam(transform);
+                    //Character.GetComponent<TeamCharButton>().SetInTeam(SelectedTeamHolder.transform);
                 }
             }
         }
 	}
 
+    public bool SetCharacter(GameObject Character)
+    {
+        switch (TeamCharCount)
+        {
+            case 0:
+                {
+                    Team[0] = Character.name;
+                    TeamCharCount++;
+                    Character.transform.SetParent(SelectedTeamHolder.transform);
+                    return true;
+                }
+            case 1:
+                {
+                    Team[1] = Character.name;
+                    TeamCharCount++;
+                    Character.transform.SetParent(SelectedTeamHolder.transform);
+                    return true;
+                }
+            case 2:
+                {
+                    Team[2] = Character.name;
+                    TeamCharCount++;
+                    Character.transform.SetParent(SelectedTeamHolder.transform);
+                    return true;
+                }
+            default:
+                {
+                    return false;
+                }
+        }
+    }
 
+    public void RemoveCharacter(GameObject Character)
+    {
+        switch (TeamCharCount)
+        {
+            case 1:
+                {
+                    Team[0] = "";
+                    TeamCharCount--;
+                    break;
+                }
+            case 2:
+                {
+                    Team[1] = "";
+                    TeamCharCount--;
+                    break;
+                }
+            case 3:
+                {
+                    Team[2] = "";
+                    TeamCharCount--;
+                    break;
+                }
+            default:
+                {
+                    break;
+                }
+        }
+
+    }
+
+    public void StartBattle()
+    {
+        string SavePath = Application.streamingAssetsPath + "/PlayerTeam.json";
+        string SavePathString = File.ReadAllText(SavePath);
+        JSONObject PlayerTeam = JSON.Parse(SavePathString) as JSONObject;
+        for (int index = 0; index < 3; ++index)
+        {
+            PlayerTeam["SelectedTeam"].AsArray[index] = Team[index];
+        }
+        File.WriteAllText(SavePath, PlayerTeam.ToString());
+    }
 }

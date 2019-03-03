@@ -40,7 +40,6 @@ public class TavernButton : MonoBehaviour {
 
     public void OnClick()
     {
-
         if (player.getGold() >= Cost )
         {
             player.reduceGold(Cost);
