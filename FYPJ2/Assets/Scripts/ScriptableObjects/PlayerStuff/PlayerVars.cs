@@ -9,7 +9,6 @@ public class PlayerVars : MonoBehaviour
     private static PlayerVars instance;
 
     public static PlayerVars Instance { get { return instance; } }
-    //public PlayerScriptable PlayerScriptable;
 
     private int PlayerGold = 0;
     private string[] SelectedTeamNames = new string[3];
@@ -34,12 +33,11 @@ public class PlayerVars : MonoBehaviour
             string PlayerTeamString = File.ReadAllText(PlayerTeamPath);
             JSONObject PlayerTeam = JSON.Parse(PlayerTeamString) as JSONObject;
             PlayerGold = PlayerTeam["PlayerGold"];
-            for (int index = 3; index < 3; ++index)
+            for (int index = 0; index < 3; ++index)
             {
                 SelectedTeamNames[index] = PlayerTeam["SelectedTeam"].AsArray[index];
             }
         }
-        Debug.Log(PlayerGold);
     }
 
     private void OnApplicationQuit()
@@ -54,8 +52,9 @@ public class PlayerVars : MonoBehaviour
         {
             PlayerTeam["SelectedTeam"].AsArray[i] = SelectedTeamNames[i];
         }
+        File.WriteAllText(PlayerTeamPath, PlayerTeam.ToString());
     }
-
+   
     #region Gold Modifier functions
     public int getGold()
     {
@@ -90,6 +89,16 @@ public class PlayerVars : MonoBehaviour
     public string GetSpecificIndexName(int index)
     {
         return SelectedTeamNames[index];
+    }
+
+    public bool FindInSelectedTeamNames(string ToFind)
+    {
+        for(int i = 0; i < 3; ++i)
+        {
+            if (SelectedTeamNames[i] == ToFind)
+                return true;
+        }
+        return false;
     }
     #endregion
 }

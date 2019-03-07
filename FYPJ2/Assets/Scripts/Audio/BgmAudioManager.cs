@@ -11,7 +11,6 @@ public class BgmAudioManager : MonoBehaviour {
     public AudioClip TownBGM;
     public AudioClip BattleBGM;
     private AudioSource BGMaudio;
-    private bool Town = false;
     private void Awake()
     {
         Instance = this;

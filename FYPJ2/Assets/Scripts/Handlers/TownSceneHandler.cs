@@ -17,7 +17,7 @@ public class TownSceneHandler : MonoBehaviour {
     {
         if(DungeonMenu != null)
         DungeonMenu.SetActive(false);
-        if(TeamSelectionMenu !=null)
+        if(TeamSelectionMenu != null)
         TeamSelectionMenu.SetActive(false);
     }
 

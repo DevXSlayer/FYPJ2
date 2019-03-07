@@ -435,46 +435,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 130936827}
   m_CullTransparentMesh: 0
---- !u!1 &178042322
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 178042324}
-  - component: {fileID: 178042323}
-  m_Layer: 0
-  m_Name: PlayerVar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &178042323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 178042322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e94e512060177c4593baf83796ae663, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &178042324
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 178042322}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 577.3135, y: 362.57434, z: -8.506626}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &208727504
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +743,7 @@ GameObject:
   - component: {fileID: 787660115}
   - component: {fileID: 787660114}
   - component: {fileID: 787660113}
+  - component: {fileID: 787660118}
   - component: {fileID: 787660117}
   m_Layer: 5
   m_Name: Canvas
@@ -880,6 +841,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94628284df969e241b8dc6b74cdb74a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &787660118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 787660112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e2201e9cac4fb44e8f41e39f88e0844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1071387839
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +928,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 787660118}
+        m_MethodName: LeaveTavern
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 787660117}
         m_MethodName: GoToTown
         m_Mode: 1
@@ -1124,7 +1107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

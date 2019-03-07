@@ -12,23 +12,16 @@ public class TeamCharSelect : MonoBehaviour {
     public Sprite[] CharSprite;
     private string[] Team = new string[3];
     private int TeamCharCount = 0;
-
+    private int InTeamCount = 0;
 
     // Use this for initialization
     void Start () {
+        Team = PlayerVars.Instance.GetSelectedTeamNames();
         string CharListPath = Application.streamingAssetsPath + "/CharHireList.json";
-        string PlayerTeamPath = Application.streamingAssetsPath + "/PlayerTeam.json";
-        string CharListString = null;
-        string PlayerTeamString = null;
 
-        Team[0] = "";
-        Team[1] = "";
-        Team[2] = "";
-        if (File.Exists(CharListPath) && CharSprite.Length > 0 && File.Exists(PlayerTeamPath))
+        if (File.Exists(CharListPath) && CharSprite.Length > 0)
         {
-            CharListString = File.ReadAllText(CharListPath);
-            PlayerTeamString = File.ReadAllText(PlayerTeamPath);
-            JSONObject PlayerTeam = JSON.Parse(PlayerTeamString) as JSONObject;
+            string CharListString = File.ReadAllText(CharListPath);
             JSONObject CharHireList = JSON.Parse(CharListString) as JSONObject;
             
             for (int i = 0; i < CharHireList.Count; ++i)
@@ -36,19 +29,19 @@ public class TeamCharSelect : MonoBehaviour {
                 if (CharHireList[i].AsArray[1])
                 {
                     GameObject Character = Instantiate(CharButton, transform);
+                    Character.name = CharHireList[i].AsArray[0].Value;
                     Character.GetComponent<TeamCharButton>().CharSelect = this;
 
-                    for (int TeamIndex = 0; TeamIndex < PlayerTeam.Count; ++TeamIndex)
+                    //Only if there isn't 3 characters in team then we check 
+                    if(InTeamCount < 3)
                     {
-                        if(PlayerTeam["SelectedTeam"].AsArray[TeamIndex] != "")
+                        //If this character from CharHireList is saved in the list of player selected team
+                        if (PlayerVars.Instance.FindInSelectedTeamNames(CharHireList[i].AsArray[0]))
                         {
-                            if (PlayerTeam["SelectedTeam"].AsArray[TeamIndex] == CharHireList[i].AsArray[0].Value)
-                            {
-                                Character.transform.SetParent(SelectedTeamHolder.transform);
-                                Character.GetComponent<TeamCharButton>().SetInTeam(transform);
-                            }
+                            SetCharacter(Character);
+                            Character.GetComponent<TeamCharButton>().SetInTeam(transform);
+                            ++InTeamCount;
                         }
-
                     }
 
                     //For setting sprite
@@ -62,7 +55,6 @@ public class TeamCharSelect : MonoBehaviour {
                             Character.name = CharSprite[count].name;
                         }
                     }
-                    //Character.GetComponent<TeamCharButton>().SetInTeam(SelectedTeamHolder.transform);
                 }
             }
         }
@@ -127,18 +119,23 @@ public class TeamCharSelect : MonoBehaviour {
                     break;
                 }
         }
-
     }
 
     public void StartBattle()
     {
-        string SavePath = Application.streamingAssetsPath + "/PlayerTeam.json";
-        string SavePathString = File.ReadAllText(SavePath);
-        JSONObject PlayerTeam = JSON.Parse(SavePathString) as JSONObject;
+        //string SavePath = Application.streamingAssetsPath + "/PlayerTeam.json";
+        //string SavePathString = File.ReadAllText(SavePath);
+        //JSONObject PlayerTeam = JSON.Parse(SavePathString) as JSONObject;
+        //for (int index = 0; index < 3; ++index)
+        //{
+        //    PlayerTeam["SelectedTeam"].AsArray[index] = Team[index];
+        //}
+        //File.WriteAllText(SavePath, PlayerTeam.ToString());
+        Debug.Log(Team);
         for (int index = 0; index < 3; ++index)
         {
-            PlayerTeam["SelectedTeam"].AsArray[index] = Team[index];
+            PlayerVars.Instance.SetTeamCharNameInTeam(Team[index], index);
         }
-        File.WriteAllText(SavePath, PlayerTeam.ToString());
+
     }
 }

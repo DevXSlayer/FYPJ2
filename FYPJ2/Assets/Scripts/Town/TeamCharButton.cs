@@ -11,7 +11,6 @@ public class TeamCharButton : MonoBehaviour {
     {
         if (!InTeam)
             OriginalTranform = transform.parent;
-        Debug.Log(CharSelected);
     }
 
     public void SelectChar()
