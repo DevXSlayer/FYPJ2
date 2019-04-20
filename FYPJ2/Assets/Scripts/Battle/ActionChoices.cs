@@ -24,6 +24,7 @@ public class ActionChoices : MonoBehaviour {
     private Stats playerStats;
     private GraphicRaycaster Raycaster;
     private EventSystem EventSystem;
+    public Animator animator;
 
     void Awake()
     {
@@ -113,6 +114,11 @@ public class ActionChoices : MonoBehaviour {
             enemyBattle.TakeDamage(playerStats.GetDmg());
 
             playerBattle.GetActionBar().value = 0.0f;
+            if(animator != null)
+            {
+                animator.SetTrigger("Attack");
+                Debug.Log("AnimAtk");
+            }
 
             TargetSelection = false;
             AttackList.SetActive(false);

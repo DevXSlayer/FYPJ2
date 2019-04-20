@@ -416,6 +416,7 @@ GameObject:
   - component: {fileID: 224726889527077750}
   - component: {fileID: 222434367434725868}
   - component: {fileID: 114413533830025162}
+  - component: {fileID: 95643141218723070}
   m_Layer: 8
   m_Name: Character
   m_TagString: Untagged
@@ -623,6 +624,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &95643141218723070
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1735455128542828}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 29161dcc3bd8d5249b06690e3c4f2785, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114047561258869652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -745,6 +764,7 @@ MonoBehaviour:
   SkillsList: {fileID: 1674897593001046}
   ItemsList: {fileID: 1791624700716370}
   AttackList: {fileID: 1573148670814256}
+  animator: {fileID: 95643141218723070}
 --- !u!114 &114176288015503874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1085,11 +1105,11 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1198,11 +1218,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1461,11 +1481,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1574,6 +1594,7 @@ MonoBehaviour:
     skillIcon: {fileID: 21300000, guid: 62dcf81bf016e7c47bfe933b8fd63a8d, type: 3}
     skillCost: 1
     skillDesc: Deal damage
+  active: 1
 --- !u!114 &114413533830025162
 MonoBehaviour:
   m_ObjectHideFlags: 1
